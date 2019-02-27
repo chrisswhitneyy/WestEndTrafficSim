@@ -30,7 +30,7 @@ settings = {
 
     # simulation settings
     "max_simulation_steps" : 10,
-    "number_of_residents" : 100,
+    "number_of_residents" : 1000,
     "use_residential_origins" : False,
     # period over which the traffic is distributed (24h = the hole day)
     "traffic_period_duration" : 8, # h
@@ -40,5 +40,5 @@ settings = {
     # see http://www.bense-jessen.de/Infos/Page10430/page10430.html
     "braking_deceleration" : 7.5, # m/s²
     "steps_between_street_construction" : 10,
-    "trip_volume" : 1
+    "trip_volume" : 2
 }
