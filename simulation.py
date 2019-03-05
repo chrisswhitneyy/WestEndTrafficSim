@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # simulation.py
-# Copyright 2012 Julian Fietkau <http://www.julian-fietkau.de/>, 
+# Copyright 2012 Julian Fietkau <http://www.julian-fietkau.de/>,
 #                Joachim Nitschke
 #
 # This file is part of Streets4MPI.
@@ -50,7 +50,7 @@ class Simulation(object):
         self.log_callback("Preparing edges...")
 
         # update driving time based on traffic load
-        for street, street_index, length, max_speed in self.street_network:
+        for street, street_index, length, max_speed, lanes in self.street_network:
             street_traffic_load = self.traffic_load[street_index]
 
             # ideal speed is when the street is empty
@@ -58,7 +58,7 @@ class Simulation(object):
             # actual speed may be less then that
             actual_speed = calculate_driving_speed(length, max_speed, street_traffic_load)
             # based on traffic jam tolerance the deceleration is weighted differently
-            perceived_speed = actual_speed + (ideal_speed - actual_speed) * self.jam_tolerance
+            perceived_speed = actual_speed + (ideal_speed - actual_speed) * (self.jam_tolerance/lanes)
 
             driving_time = length / perceived_speed
 
@@ -159,4 +159,3 @@ if __name__ == "__main__":
         print "Running simulation step", step + 1, "of 10..."
         sim.step()
     # done
-

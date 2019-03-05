@@ -96,7 +96,7 @@ class GraphBuilder(object):
     def build_street_network(self):
         # add boundaries to street network
         if 9999 not in self.bounds.values() and -9999 not in self.bounds.values():
-            self.street_network.set_bounds(self.bounds["min_lat"], self.bounds["max_lat"], 
+            self.street_network.set_bounds(self.bounds["min_lat"], self.bounds["max_lat"],
                                            self.bounds["min_lon"], self.bounds["max_lon"])
 
         # construct the actual graph structure from the input data
@@ -115,8 +115,9 @@ class GraphBuilder(object):
                     # calculate street length
                     length = self.length_haversine(refs[i], refs[i+1])
 
-                    # determine max speed
+                    # determine max speed and number of lanes
                     max_speed = 50
+                    lanes = 2
                     if tags["highway"] in self.max_speed_map.keys():
                         max_speed = self.max_speed_map[tags["highway"]]
                     if "maxspeed" in tags:
@@ -127,10 +128,16 @@ class GraphBuilder(object):
                             max_speed = int(max_speed_tag.replace("mph", "").strip(" "))
                         elif max_speed_tag == "none":
                             max_speed = 140
+                    elif "lanes" in tags:
+                        lanes_tag = tags["lanes"]
+                        if lanes_tag.isdigit():
+                            lanes = int(max_speed_tag)
+                        elif lanes_tag == "none":
+                            lanes = 2
 
                     # add street to street network
                     if not self.street_network.has_street(street):
-                        self.street_network.add_street(street, length, max_speed)
+                        self.street_network.add_street(street, length, max_speed,lanes)
 
         return self.street_network
 
@@ -263,4 +270,3 @@ if __name__ == "__main__":
     print "Industrial Nodes connected to street network: ", len(builder.connected_industrial_nodes)
     print "Commercial Nodes: ", len(builder.commercial_nodes)
     print "Commercial Nodes connected to street network: ", len(builder.connected_commercial_nodes)
-
