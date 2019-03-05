@@ -131,7 +131,7 @@ class GraphBuilder(object):
                     elif "lanes" in tags:
                         lanes_tag = tags["lanes"]
                         if lanes_tag.isdigit():
-                            lanes = int(max_speed_tag)
+                            lanes = int(lanes_tag)
                         elif lanes_tag == "none":
                             lanes = 2
 

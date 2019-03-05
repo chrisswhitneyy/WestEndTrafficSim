@@ -29,6 +29,7 @@ class StreetNetwork(object):
     STREET_ATTRIBUTE_INDEX_INDEX = 0 # duplicate word "INDEX" on porpuse
     STREET_ATTRIBUTE_INDEX_LENGTH = 1
     STREET_ATTRIBUTE_INDEX_MAX_SPEED = 2
+    STREET_ATTRIBUTE_INDEX_LANES = 3 
     NODE_ATTRIBUTE_INDEX_LONGITUDE = 0
     NODE_ATTRIBUTE_INDEX_LATITUDE = 1
 
@@ -122,4 +123,4 @@ class StreetNetwork(object):
             # get street attributes
             street_attributes = self._graph.edge_attributes(street)
 
-            yield (street, street_attributes[StreetNetwork.STREET_ATTRIBUTE_INDEX_INDEX], street_attributes[StreetNetwork.STREET_ATTRIBUTE_INDEX_LENGTH], street_attributes[StreetNetwork.STREET_ATTRIBUTE_INDEX_MAX_SPEED])
+            yield (street, street_attributes[StreetNetwork.STREET_ATTRIBUTE_INDEX_INDEX], street_attributes[StreetNetwork.STREET_ATTRIBUTE_INDEX_LENGTH], street_attributes[StreetNetwork.STREET_ATTRIBUTE_INDEX_MAX_SPEED], street_attributes[StreetNetwork.STREET_ATTRIBUTE_INDEX_LANES])

@@ -30,7 +30,7 @@ settings = {
 
     # simulation settings
     "max_simulation_steps" : 10,
-    "number_of_residents" : 1000,
+    "number_of_residents" : 47000,
     "use_residential_origins" : False,
     # period over which the traffic is distributed (24h = the hole day)
     "traffic_period_duration" : 8, # h
