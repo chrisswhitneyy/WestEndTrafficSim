@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # streetnetwork.py
-# Copyright 2012 Joachim Nitschke, 
+# Copyright 2012 Joachim Nitschke,
 #                Julian Fietkau <http://www.julian-fietkau.de/>
 #
 # This file is part of Streets4MPI.
@@ -45,9 +45,9 @@ class StreetNetwork(object):
         return self._graph.has_edge(street)
 
 
-    def add_street(self, street, length, max_speed):
+    def add_street(self, street, length, max_speed,lanes):
         # attribute order is given through constants ATTRIBUTE_INDEX_...
-        street_attributes = [self.street_index, length, max_speed]
+        street_attributes = [self.street_index, length, max_speed,lanes]
         # set initial weight to ideal driving time
         driving_time = length / max_speed
 
@@ -87,9 +87,9 @@ class StreetNetwork(object):
 
 
     def add_node(self, node, longitude, latitude):
-        # attribute order is given through constants ATTRIBUTE_INDEX_... 
+        # attribute order is given through constants ATTRIBUTE_INDEX_...
         self._graph.add_node(node, [longitude, latitude])
-        
+
 
     def get_nodes(self):
         return self._graph.nodes()
